@@ -1,0 +1,206 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+
+.lead {
+    word-wrap: break-word;
+}
+#canvas>canvas{
+    width: 100%;
+    height: auto;
+    -webkit-box-shadow: 7px 7px 20px 0px rgba(50, 50, 50, 0.35);
+    -moz-box-shadow:    7px 7px 20px 0px rgba(50, 50, 50, 0.35);
+    box-shadow:         7px 7px 20px 0px rgba(50, 50, 50, 0.35);
+}
+
+
+
+.drawArea {
+    width: 100%;
+    min-height: 500px;
+    -webkit-box-shadow: 7px 7px 20px 0px rgba(50, 50, 50, 0.35);
+    -moz-box-shadow:    7px 7px 20px 0px rgba(50, 50, 50, 0.35);
+    box-shadow:         7px 7px 20px 0px rgba(50, 50, 50, 0.35);
+    position: relative;
+    perspective: 500px;
+    overflow: hidden;
+}
+
+section.cont {
+    margin: auto;
+    /* left: 40%; */
+    /* right: 50%; */
+    top: 10em;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    /*perspective: 1000px;*/
+}
+
+#cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+
+#cube figure {
+    margin: 0;
+    /*width: 196px;
+    height: 196px;*/
+    display: block;
+    position: absolute;
+    border: 1px solid black;
+    background-color: rgba(206, 206, 255, 0.1);
+    user-select: none;
+}
+#cube .cover{
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 40, 0.5);
+    user-select: none;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+#cube.background{
+    background-size: 10% 10%;
+    background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
+
+}
+figure>.graph-background, figure>.background{
+    display: block;
+    width: 100%;
+    height: 100%;
+    outline: 1px solid transparent;
+}
+figure.back>.graph-background{
+    transform: rotateX( -180deg );
+}
+figure.left>.graph-background{
+    transform: rotateY( -180deg );
+}
+figure.bottom>.graph-background{
+    transform: rotateX( -180deg );
+}
+
+figure:before {
+    background: -webkit-radial-gradient(top left, rgba(0, 0, 0, 0.5), #000000);
+}
+figure:after {
+    background: -webkit-radial-gradient(top right, rgba(0, 0, 0, 0.5), #000000);
+}
+
+#cube figure.front  {
+    transform: rotateY(   0deg ); 
+}
+#cube figure.back   {
+    transform: rotateX( 180deg ); 
+}
+#cube figure.right  {
+    transform: rotateY(  90deg ); 
+}
+#cube figure.left   {
+    transform: rotateY( -90deg ); 
+}
+
+#cube figure.top    {
+    transform: rotateX(  90deg ); 
+    visibility: hidden;
+}
+#cube figure.bottom {
+    transform: rotateX( -90deg ); 
+}
+
+#cube figure.front  {
+    transform: rotateY(   0deg ) translateZ( 100px ); 
+    visibility: hidden;
+}
+#cube figure.back, .back-background   {
+    transform: rotateX( 180deg ) translateZ( 100px ); 
+}
+#cube .back-cover {
+    transform: rotateX( 180deg ) translateZ( 100.01px ); 
+}
+#cube figure.right  {
+    transform: rotateY(  90deg ) translateZ( 100px ); 
+    visibility: hidden;
+}
+#cube figure.left   {
+    transform: rotateY( -90deg ) translateZ( 100px ); 
+}
+#cube .left-cover,  .left-background   {
+    transform: rotateY( -90deg ) translateZ( 100.01px ); 
+}
+#cube figure.top    {
+    transform: rotateX(  90deg ) translateZ( 100px ); 
+    visibility: hidden;
+}
+#cube figure.bottom {
+    transform: rotateX( -90deg ) translateZ( 100px ); 
+}
+#cube .bottom-cover,  .bottom-background   {
+    transform: rotateX( -90deg ) translateZ( 100.01px ); 
+}
+
+div.block{
+    background: black;
+}
+div.block:hover:after{
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 1em;
+    bottom: 26px;
+    color: #fff;
+    content: attr(title);
+    left: 20%;
+    padding: 0.3em 1em;
+    position: absolute;
+    z-index: 98;
+    width: auto;
+}
+div.block:hover div{
+    border-width: 0.8px;
+    -webkit-box-shadow: 0px 0px 22px 0px rgba(200, 208, 141, 0.94);
+    -moz-box-shadow: 0px 0px 22px 0px rgba(200, 208, 141, 0.94);
+    box-shadow: 0px 0px 22px 0px rgb(200, 208, 141);
+}
+div.block>div{
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    display: block;
+    position: absolute;
+    border: 0.1px solid black;
+    background-color: rgba(206, 206, 255, 0.1);
+    user-select: none;
+}
+.graph-controls .form-control{
+    min-width: 5em;
+}
+div.block span.title{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+div.block span.title>span{
+    white-space: nowrap;
+}
+div.arrow{
+    height: 0;
+    display: block;
+    position: relative;
+    border: 2px solid black;
+}

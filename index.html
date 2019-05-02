@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D OLMP Histogram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">3D OLMP Histogram</a>
+    </div>
+</nav>
+<p/>
+<div class="container" id="app">
+
+    <div class="jumbotron">
+        <h1 class="display-4"> Upload csv file</h1>
+        <p class="lead">object_id;size;information_amount;hierarchicallity;structuredness</p>
+        <hr class="my-4">
+        <p>and watch visualization</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+
+    </div>
+    <form id="fileUpload" class="form-inline">
+        <div class="form-row">
+            <div class="input-group col-sm-12 col-md-4">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile"
+                           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+
+            </div>
+            <div class="input-group col-sm-12 col-md-2">
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button class='btn btn-warning' id='reset'>Reset</button>
+                    <!--<button class='btn btn-default' id='demo'>Nahrát demodata</button>-->
+                </div>
+            </div>
+            <div class="input-group col-sm-12 col-md-6">
+                <div class="btn-group" role="group">
+                    <button class='btn btn-primary' id='rdbs'>RDBS</button>
+                    <button class='btn btn-success' id='xml'>XML</button>
+                    <button class='btn btn-danger' id='json'>JSON</button>
+                    <button class='btn btn-warning' id='rdf'>RDF</button>
+                    <button class='btn btn-dark' id='unstruc'>nestrukturované formáty</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <p/>
+    <form id="controls" class="form-inline">
+
+        <div class="form-row">
+            <rotation-axis-x></rotation-axis-x>
+            <rotation-axis-y></rotation-axis-y>
+            <rotation-axis-z></rotation-axis-z>
+            <perspective></perspective>
+            <zoom></zoom>
+            <intervals></intervals>
+            <!---->
+        </div>
+
+
+    </form>
+
+    <div class="drawArea col-xs-12">
+        <section class="cont">
+            <div id="cube">
+                <figure class="front">1</figure>
+                <figure class="back">
+                    <img src="img/3dgrafEntr.png" alt="entropy" draggable="false" class="graph-background"/>
+                    <div class="background back-background"></div>
+                </figure>
+                <div class="cover back-cover"></div>
+                <figure class="right">3</figure>
+                <figure class="left">
+                    <img src="img/3dgrafStruk.png" alt="entropy" draggable="false" class="graph-background"/>
+                    <div class="background left-background"></div>
+                </figure>
+                <div class="cover left-cover"></div>
+                <figure class="top">5</figure>
+                <figure class="bottom">
+                    <img src="img/3dgrafHie.png" alt="entropy" draggable="false" class="graph-background"/>
+                    <div class="background bottom-background"></div>
+                </figure>
+                <div class="cover bottom-cover"></div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12">
+        <table id="data">
+            <thead>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; Daniel Vodňanský 2019</p>
+    </footer>
+</div>
+</div>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<!--<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+            function () {
+                (b[l].q = b[l].q || []).push(arguments)
+            });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', '3D-histogram-daniel-vodnansky', 'auto');
+    ga('send', 'pageview');
+</script>-->
+<script src="main.js"></script>
+</body>
+</html>
