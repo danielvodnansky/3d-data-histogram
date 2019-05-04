@@ -43,6 +43,7 @@ section.cont {
     height: 200px;
     position: relative;
     /*perspective: 1000px;*/
+    transition: all .2s linear;
 }
 
 #cube {

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -17,6 +19,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="node_modules/papaparse/papaparse.min.js"></script>
 </head>
 <body>
 <!--[if lt IE 10]>
@@ -42,16 +45,14 @@
     <form id="fileUpload" class="form-inline">
         <div class="form-row">
             <div class="input-group col-sm-12 col-md-4">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile"
-                           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-
+                <csv-file v-on:change="fileData=$event"></csv-file>
             </div>
             <div class="input-group col-sm-12 col-md-2">
                 <div class="btn-group" role="group">
-                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button type="submit" class="btn btn-primary">
+                        <!--<i class="fas fa-upload"></i>-->
+                        Upload
+                    </button>
                     <button class='btn btn-warning' id='reset'>Reset</button>
                     <!--<button class='btn btn-default' id='demo'>Nahrát demodata</button>-->
                 </div>
@@ -67,46 +68,27 @@
             </div>
         </div>
     </form>
-    <p/>
+    <p></p>
     <form id="controls" class="form-inline">
 
         <div class="form-row">
-            <rotation-axis-x></rotation-axis-x>
-            <rotation-axis-y></rotation-axis-y>
-            <rotation-axis-z></rotation-axis-z>
-            <perspective></perspective>
-            <zoom></zoom>
-            <intervals></intervals>
+            <rotation-axis-x v-on:change="axisX=$event"></rotation-axis-x>
+            <rotation-axis-y v-on:change="axisY=$event"></rotation-axis-y>
+            <rotation-axis-z v-on:change="axisZ=$event"></rotation-axis-z>
+            <perspective v-on:change="perspective=$event"></perspective>
+            <zoom v-on:change="zoom=$event"></zoom>
+            <intervals v-on:change="intervals=$event"></intervals>
             <!---->
         </div>
 
 
     </form>
 
-    <div class="drawArea col-xs-12">
-        <section class="cont">
-            <div id="cube">
-                <figure class="front">1</figure>
-                <figure class="back">
-                    <img src="img/3dgrafEntr.png" alt="entropy" draggable="false" class="graph-background"/>
-                    <div class="background back-background"></div>
-                </figure>
-                <div class="cover back-cover"></div>
-                <figure class="right">3</figure>
-                <figure class="left">
-                    <img src="img/3dgrafStruk.png" alt="entropy" draggable="false" class="graph-background"/>
-                    <div class="background left-background"></div>
-                </figure>
-                <div class="cover left-cover"></div>
-                <figure class="top">5</figure>
-                <figure class="bottom">
-                    <img src="img/3dgrafHie.png" alt="entropy" draggable="false" class="graph-background"/>
-                    <div class="background bottom-background"></div>
-                </figure>
-                <div class="cover bottom-cover"></div>
-            </div>
-        </section>
+    <div class="drawArea col-xs-12" @mousedown="captureOn" @mouseup="captureOff" @mousemove="mo" @wheel="wheel">
+        <cube v-bind:axis-x="axisX" v-bind:axis-y="axisY" v-bind:axis-z="axisZ"
+              v-bind:perspective="perspective" v-bind:zoom="zoom" v-bind:intervals="intervals"></cube>
     </div>
+    {{fileData}}
     <div class="col-xs-12">
         <table id="data">
             <thead>
