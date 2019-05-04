@@ -153,30 +153,114 @@ Vue.component('intervals', {
 });
 
 Vue.component('cube', {
-    props: ['axisX', 'axisY', 'axisZ', 'perspective', 'zoom', 'intervals'],
+    props: ['axisX', 'axisY', 'axisZ', 'perspective', 'zoom', 'intervals', 'data', 'structures'],
     template: `
         <section class="cont" v-bind:style="{ transform: 'scale(' + zoom + ')', perspective: perspective + 'px' }">
             <div id="cube" v-bind:style="{ transform: 'rotateX(' + axisX + 'deg) rotateY(' + axisY + 'deg) rotateZ(' + axisZ + 'deg)' }">
-                <figure class="front">1</figure>
+                <figure class="front">
+                    <div class="graph-background"></div>
+                </figure>
                 <figure class="back">
-                    <img src="img/3dgrafEntr.png" alt="entropy" draggable="false" class="graph-background"/>
+                    <div class="graph-background grid">
+                        <span class="axis-label">1&emsp;amount of information&emsp;0</span>
+                    </div>
+                    <!--<img src="img/3dgrafEntr.png" alt="entropy" draggable="false" class="graph-background"/>-->
                     <div class="background back-background"></div>
                 </figure>
                 <div class="cover back-cover"></div>
-                <figure class="right">3</figure>
+                <figure class="right">
+                    <div class="graph-background"></div>
+                </figure>
                 <figure class="left">
-                    <img src="img/3dgrafStruk.png" alt="entropy" draggable="false" class="graph-background"/>
+                    <div class="graph-background grid">
+                        <span class="axis-label">1&ensp;amount of structuredness&ensp;0</span>
+                    </div>
+                    <!--<img src="img/3dgrafStruk.png" alt="entropy" draggable="false" class="graph-background"/>-->
                     <div class="background left-background"></div>
                 </figure>
                 <div class="cover left-cover"></div>
-                <figure class="top">5</figure>
+                <figure class="top">
+                    <div class="graph-background"></div>
+                </figure>
                 <figure class="bottom">
-                    <img src="img/3dgrafHie.png" alt="entropy" draggable="false" class="graph-background"/>
+                    <div class="graph-background grid">
+                        <span class="axis-label">0&ensp;amount of hierarchicallity&ensp;1</span>
+                    </div>
+                    <!--<img src="img/3dgrafHie.png" alt="entropy" draggable="false" class="graph-background"/>-->
                     <div class="background bottom-background"></div>
                 </figure>
                 <div class="cover bottom-cover"></div>
+                <cube-data v-bind:data="data" v-bind:structures="structures"></cube-data>
             </div>
         </section>
+    `
+});
+
+Vue.component('cube-data', {
+    props: ['structures', 'data'],
+    template: `
+    <div id="cube-structures">
+        <div v-for="(structure, index) in structures">
+            <block v-if="structure.on" v-bind:id="'structure_' + index" v-bind:title="structure.title"
+            v-bind:x="200*structure.hierMin" v-bind:y="200*structure.entMin" v-bind:z="200*structure.strucMin"
+            v-bind:width="200*(structure.hierMax-structure.hierMin)" 
+            v-bind:height="200*(structure.entMax-structure.entMin)" 
+            v-bind:length="200*(structure.strucMax-structure.strucMin)"
+            v-bind:color="structure.color" v-bind:titleRotate="structure.titleRotate"
+            v-bind:label="structure.label"></block>
+            </div>
+        </div>
+    </div>
+    `
+});
+
+Vue.component('block', {
+    props: {
+        id: String,
+        x: Number,
+        y: Number,
+        z: Number,
+        width: Number,
+        height: Number,
+        length: Number,
+        color: String,
+        title: String,
+        label: String,
+        titleRotate: Number
+    },
+    template: `
+        <div class="block" v-bind:id="id" v-bind:title="title"
+        v-bind:style="{transform: 'translate3d(' + (x) + 'px, ' + (200 - y - height) + 'px, ' + (z - 100 + length / 2) + 'px)',
+             'transform-style': 'preserve-3d'}">
+            <div class="front" v-bind:style="{transform: 'rotateY(   0deg ) translateZ( ' + (length / 2) + 'px )',
+                                            width: width+'px',
+                                            height: height+'px',
+                                            'background-color': color}">
+                <span class="title">
+                    <span v-bind:style="{transform: 'rotate(' + titleRotate + 'deg)'}">{{title}}</span>
+                </span> 
+            </div>
+            <div class="back" v-bind:style="{transform: 'rotateX( 180deg ) translateZ( ' + ((length) / 2) + 'px )',
+                                            width: width+'px',
+                                            height: height+'px',
+                                            'background-color': color}"></div>
+            <div class="right" v-bind:style="{transform: 'rotateY(  90deg ) translateZ( ' + ((-length) / 2) + 'px )',
+                                            width: length+'px',
+                                            height: height+'px',
+                                            'background-color': color}"></div>
+            <div class="left" v-bind:style="{transform: 'rotateY( -90deg ) translateZ( ' + (length / 2 - width) + 'px )',
+                                            width: length+'px',
+                                            height: height+'px',
+                                            'background-color': color}"></div>
+            <div class="top" v-bind:style="{transform: 'rotateX(  90deg ) translateZ( ' + (length / 2) + 'px )',
+                                            width: width+'px',
+                                            height: length+'px',
+                                            'background-color': color}"></div>
+            <div class="bottom" v-bind:style="{transform: 'rotateX( 90deg ) translateZ( ' + (-height + length / 2) + 'px )',
+                                            width: width+'px',
+                                            height: length+'px',
+                                            'background-color': color}"></div>
+        </div>
     `
 });
 
@@ -211,8 +295,8 @@ Vue.component('csvFile', {
 
 Vue.component('previewTable', {
     template: `
-        <div v-if="!!data">
-            <table class="table table-striped table-hover table-sm table-responsive" id="data-preview">
+        <div v-if="!!data" id="data-table">
+            <table class="table table-striped table-hover table-sm table-responsive-sm" id="data-preview">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">object_id</th>
@@ -246,7 +330,74 @@ var app = new Vue({
         perspective: null,
         zoom: null,
         intervals: null,
-        fileData: null
+        fileData: null,
+        structures: {
+            rdbs: {
+                on: false,
+                name: 'RDBS',
+                title: 'relational database',
+                hierMin: 0,
+                hierMax: 1,
+                entMin: 0.9,
+                entMax: 1,
+                strucMin: 0.9,
+                strucMax: 1,
+                color: 'rgba(112, 112, 255, 0.4)',
+                titleRotate: 0
+            },
+            xml: {
+                on: false,
+                name: 'XML',
+                title: 'XML',
+                hierMin: 0.9,
+                hierMax: 1,
+                entMin: 0,
+                entMax: 1,
+                strucMin: 0,
+                strucMax: 1,
+                color: 'rgba(112, 255, 112, 0.4)',
+                titleRotate: 90
+            },
+            json: {
+                on: false,
+                name: 'JSON',
+                title: 'JSON',
+                hierMin: 0.9,
+                hierMax: 1,
+                entMin: 0,
+                entMax: 1,
+                strucMin: 0.9,
+                strucMax: 1,
+                color: 'rgba(255, 112, 112, 0.4)',
+                titleRotate: 90
+            },
+            rdf: {
+                on: false,
+                name: 'RDF',
+                title: 'RDF',
+                hierMin: 0,
+                hierMax: 1,
+                entMin: 0,
+                entMax: 1,
+                strucMin: 0.9,
+                strucMax: 1,
+                color: 'rgba(255, 255, 112, 0.4)',
+                titleRotate: 0
+            },
+            unstruc: {
+                on: false,
+                name: 'unstructured',
+                title: 'unstructured formats',
+                hierMin: 0.9,
+                hierMax: 1,
+                entMin: 0,
+                entMax: 1,
+                strucMin: 0,
+                strucMax: 0.1,
+                color: 'rgba(112, 255, 225, 0.4)',
+                titleRotate: 90
+            },
+        }
     },
     methods: {
         mo: function (evt) {
