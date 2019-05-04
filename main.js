@@ -186,73 +186,55 @@ Vue.component('csvFile', {
             <input type="file" class="custom-file-input" id="customFile"
                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" v-on:change="fileChange">
             <label class="custom-file-label" for="customFile">
-                Choose file
+                Choose
             </label>
         </div>`,
-    /*data: function () {
-        return {
-            fileData: 0
-        }
-
-    },*/
     methods: {
         fileChange: function (evt) {
-            /*//console.log('event.target.files', event.target.files);
-            var reader = new FileReader();
-            var files = event.target.files;
-            console.log('files', event.target.files);
-            //var fileData = null;
-            for (var i = 0; i < files.length; i++) {
-                var f = files[i];
-                var type = f.type;
-                console.log('type', type);
-                reader.onload = (function (ev) {
-                    console.log('ev.target.result',ev.target.result);
-                    return function (e) {
-                        var data = (e.target.result);
-                        console.log('data', data);
-                        var fileData = parseCSV(data);
-                        console.log('fileData', fileData);
-                        this.$emit('change', fileData);
-                    };
-                })(reader);
-            }
-            //this.fileData = fileData;*/
 
             var reader = new FileReader();
             var files = evt.target.files;
             for (var i = 0; i < files.length; i++) {
                 var f = files[i];
                 var type = f.type;
-
-                reader.onload = (function (event) {
-                    return function (e) {
-                        var data = (e.target.result);
-                        //var data2 = (reader.readAsText(f));
-                        fileData = data;
-                        var parsedData = parseCSV(data);
-                        console.log('parsedData', parsedData);
-                        this.$emit('change', parsedData);
-                    };
-                })(reader);
-
                 reader.addEventListener("load", function () {
                     let fileCSV = reader.result;
-                    console.log('fileCSV', fileCSV);
                     var parsedData = parseCSV(fileCSV);
-                    console.log('parsedData', parsedData);
-                    this.$emit('change', parsedData);
+                    console.log('parsedData.data', parsedData.data);
+                    this.$emit('change', parsedData.data);
                 }.bind(this), false);
-
                 var text = reader.readAsText(f);
             }
         }
-    },
-    watch: {
-        /*fileData: function (newValue) {
-            this.$emit('change', fileData);
-        }*/
     }
+});
+
+Vue.component('previewTable', {
+    template: `
+        <div v-if="!!data">
+            <table class="table table-striped table-hover table-sm table-responsive" id="data-preview">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">object_id</th>
+                        <th scope="col">size</th>
+                        <th scope="col">information_amount</th>
+                        <th scope="col">hierarchicallity</th>
+                        <th scope="col">structuredness</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="object in data">
+                        <td scope="row">{{object.object_id}}</td>
+                        <td>{{object.size}}</td>
+                        <td>{{object.information_amount}}</td>
+                        <td>{{object.hierarchicallity}}</td>
+                        <td>{{object.structuredness}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `,
+    props: ['data']
 });
 
 var app = new Vue({
@@ -293,7 +275,8 @@ var app = new Vue({
 var parseCSV = function (data) {
     let csv = data ? Papa.parse(data, {
         delimiter: ";",
-        header: true
+        header: true,
+        dynamicTyping: true
     }) : null;
     if (!csv) {
         return;

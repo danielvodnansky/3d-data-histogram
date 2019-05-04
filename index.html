@@ -44,27 +44,23 @@
     </div>
     <form id="fileUpload" class="form-inline">
         <div class="form-row">
-            <div class="input-group col-sm-12 col-md-4">
+            <div class="input-group col-sm-12 col-md-6 col-lg-3 mb-2">
                 <csv-file v-on:change="fileData=$event"></csv-file>
             </div>
-            <div class="input-group col-sm-12 col-md-2">
-                <div class="btn-group" role="group">
-                    <button type="submit" class="btn btn-primary">
-                        <!--<i class="fas fa-upload"></i>-->
-                        Upload
-                    </button>
-                    <button class='btn btn-warning' id='reset'>Reset</button>
-                    <!--<button class='btn btn-default' id='demo'>Nahrát demodata</button>-->
-                </div>
+            <div class="btn-group flex-wrap col-sm-12 col-md-6 col-lg-3 mb-2">
+                <button type="submit" class="btn btn-primary">
+                    <!--<i class="fas fa-upload"></i>-->
+                    Upload
+                </button>
+                <button class='btn btn-warning' id='reset'>Reset</button>
+                <!--<button class='btn btn-default' id='demo'>Nahrát demodata</button>-->
             </div>
-            <div class="input-group col-sm-12 col-md-6">
-                <div class="btn-group" role="group">
-                    <button class='btn btn-primary' id='rdbs'>RDBS</button>
-                    <button class='btn btn-success' id='xml'>XML</button>
-                    <button class='btn btn-danger' id='json'>JSON</button>
-                    <button class='btn btn-warning' id='rdf'>RDF</button>
-                    <button class='btn btn-dark' id='unstruc'>nestrukturované formáty</button>
-                </div>
+            <div class="btn-group flex-wrap col-sm-12 col-lg-6 mb-2">
+                <button class='btn btn-primary' id='rdbs'>RDBS</button>
+                <button class='btn btn-success' id='xml'>XML</button>
+                <button class='btn btn-danger' id='json'>JSON</button>
+                <button class='btn btn-warning' id='rdf'>RDF</button>
+                <button class='btn btn-dark' id='unstruc'>nestrukturované formáty</button>
             </div>
         </div>
     </form>
@@ -88,16 +84,8 @@
         <cube v-bind:axis-x="axisX" v-bind:axis-y="axisY" v-bind:axis-z="axisZ"
               v-bind:perspective="perspective" v-bind:zoom="zoom" v-bind:intervals="intervals"></cube>
     </div>
-    {{fileData}}
     <div class="col-xs-12">
-        <table id="data">
-            <thead>
-
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
+        <preview-table v-bind:data="fileData"></preview-table>
     </div>
 
     <footer>
