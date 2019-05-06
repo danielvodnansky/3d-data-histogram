@@ -14,12 +14,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="60" column="85" selection-start-line="60" selection-start-column="85" selection-end-line="60" selection-end-column="85" />
+            <state relative-caret-position="901">
+              <caret line="53" column="84" selection-start-line="53" selection-start-column="84" selection-end-line="53" selection-end-column="84" />
             </state>
           </provider>
         </entry>
@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="80" column="28" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="28" />
+            <state relative-caret-position="983">
+              <caret line="247" column="26" selection-start-line="247" selection-start-column="26" selection-end-line="247" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -36,16 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
-              <caret line="175" column="87" selection-start-line="175" selection-start-column="87" selection-end-line="175" selection-end-column="87" />
-              <folding>
-                <element signature="e#521#527#0" expanded="true" />
-                <element signature="e#548#554#0" expanded="true" />
-                <element signature="e#1117#1123#0" expanded="true" />
-                <element signature="e#1147#1153#0" expanded="true" />
-                <element signature="e#1719#1725#0" expanded="true" />
-                <element signature="e#1751#1757#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="955">
+              <caret line="289" column="59" lean-forward="true" selection-start-line="289" selection-start-column="59" selection-end-line="289" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -62,16 +54,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>form-control</find>
-      <find>input-group</find>
-      <find>mr-sm-2</find>
-      <find>mb-2</find>
-      <find>col-md</find>
-      <find>axisX</find>
-      <find>anal</find>
-      <find>$</find>
-      <find>parseCSV</find>
-      <find>emit</find>
       <find>v-on</find>
       <find>ev</find>
       <find>d-xs-block</find>
@@ -87,9 +69,21 @@
       <find>label</find>
       <find>graph-ba</find>
       <find>200</find>
-      <find>axis-la</find>
       <find>bottom</find>
+      <find>axis-la</find>
+      <find>black</find>
+      <find>zoom</find>
+      <find>.data</find>
+      <find>data</find>
       <find>click</find>
+      <find>this.intervals</find>
+      <find>parseCSV</find>
+      <find>console</find>
+      <find>title=</find>
+      <find>defaultStructuresData</find>
+      <find>created</find>
+      <find>checkb</find>
+      <find>.5</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;button</replace>
@@ -100,7 +94,11 @@
       <replace>col-sm-12 col-md</replace>
       <replace>value</replace>
       <replace>101</replace>
+      <replace>.</replace>
       <replace>click.prevent</replace>
+      <replace>intervalSize</replace>
+      <replace>100.01</replace>
+      <replace>.01</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -189,7 +187,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556819641057</updated>
-      <workItem from="1556819642204" duration="39211000" />
+      <workItem from="1556819642204" duration="49916000" />
+      <workItem from="1557078138640" duration="7370000" />
     </task>
     <task id="LOCAL-00001" summary="file upload">
       <created>1556991774054</created>
@@ -209,7 +208,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39211000" />
+    <option name="totallyTimeSpent" value="57286000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -225,7 +224,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.13314785" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.13394277" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -275,32 +274,24 @@
     <option name="LAST_COMMIT_MESSAGE" value="responsible" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.css">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="80" column="28" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="28" />
+        <state relative-caret-position="901">
+          <caret line="53" column="84" selection-start-line="53" selection-start-column="84" selection-end-line="53" selection-end-column="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="60" column="85" selection-start-line="60" selection-start-column="85" selection-end-line="60" selection-end-column="85" />
+        <state relative-caret-position="983">
+          <caret line="247" column="26" selection-start-line="247" selection-start-column="26" selection-end-line="247" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="175" column="87" selection-start-line="175" selection-start-column="87" selection-end-line="175" selection-end-column="87" />
-          <folding>
-            <element signature="e#521#527#0" expanded="true" />
-            <element signature="e#548#554#0" expanded="true" />
-            <element signature="e#1117#1123#0" expanded="true" />
-            <element signature="e#1147#1153#0" expanded="true" />
-            <element signature="e#1719#1725#0" expanded="true" />
-            <element signature="e#1751#1757#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="955">
+          <caret line="289" column="59" lean-forward="true" selection-start-line="289" selection-start-column="59" selection-end-line="289" selection-end-column="59" />
         </state>
       </provider>
     </entry>

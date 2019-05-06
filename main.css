@@ -144,7 +144,7 @@ figure:after {
 
 #cube figure.top    {
     transform: rotateX(  90deg ); 
-    border: 1px solid black;
+    border: 1px solid #2c2e306b;
     pointer-events : none;
 }
 #cube figure.bottom {
@@ -154,36 +154,36 @@ figure:after {
 
 #cube figure.front  {
     transform: rotateY(   0deg ) translateZ( 100px );
-    border: 1px solid black;
+    border: 1px solid #2c2e306b;
     pointer-events : none;
 }
 #cube figure.back, .back-background   {
-    transform: rotateX( 180deg ) translateZ( 100px );
+    transform: rotateX( 180deg ) translateZ( 100.01px );
     /*border-left: 3px solid black;*/
 }
 #cube .back-cover {
-    transform: rotateX( 180deg ) translateZ( 101px ); 
+    transform: rotateX( 180deg ) translateZ( 101px );
 }
 #cube figure.right  {
     transform: rotateY(  90deg ) translateZ( 100px );
-    border: 1px solid black;
+    border: 1px solid #2c2e306b;
     pointer-events : none;
 }
 #cube figure.left   {
-    transform: rotateY( -90deg ) translateZ( 100px ); 
+    transform: rotateY( -90deg ) translateZ( 100.01px );
 }
 #cube .left-cover,  .left-background   {
-    transform: rotateY( -90deg ) translateZ( 101px ); 
+    transform: rotateY( -90deg ) translateZ( 101px );
 }
 #cube figure.top    {
     transform: rotateX(  90deg ) translateZ( 100px ); 
     visibility: hidden;
 }
 #cube figure.bottom {
-    transform: rotateX( -90deg ) translateZ( 100px ); 
+    transform: rotateX( -90deg ) translateZ( 100.01px );
 }
 #cube .bottom-cover,  .bottom-background   {
-    transform: rotateX( -90deg ) translateZ( 101px ); 
+    transform: rotateX( -90deg ) translateZ( 101px );
 }
 
 div.block{
@@ -213,7 +213,7 @@ div.block>div{
     margin: 0;
     display: block;
     position: absolute;
-    border: 0.1px solid black;
+    border: 0.04px solid black;
     background-color: rgba(206, 206, 255, 0.1);
     user-select: none;
 }
@@ -241,4 +241,12 @@ div.arrow{
 #data-table {
     max-height: 300px;
     overflow-y: auto;
+}
+
+/*transitions*/
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }

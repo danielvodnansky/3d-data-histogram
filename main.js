@@ -1,3 +1,72 @@
+var defaultStructuresData = () => {
+    return {
+        rdbs: {
+            on: false,
+            name: 'RDBS',
+            title: 'relational database',
+            hierMin: 0,
+            hierMax: 1,
+            entMin: 0.9,
+            entMax: 1,
+            strucMin: 0.9,
+            strucMax: 1,
+            color: 'rgba(112, 112, 255, 0.4)',
+            titleRotate: 0
+        },
+        xml: {
+            on: false,
+            name: 'XML',
+            title: 'XML',
+            hierMin: 0.9,
+            hierMax: 1,
+            entMin: 0,
+            entMax: 1,
+            strucMin: 0,
+            strucMax: 1,
+            color: 'rgba(112, 255, 112, 0.4)',
+            titleRotate: 90
+        },
+        json: {
+            on: false,
+            name: 'JSON',
+            title: 'JSON',
+            hierMin: 0.9,
+            hierMax: 1,
+            entMin: 0,
+            entMax: 1,
+            strucMin: 0.9,
+            strucMax: 1,
+            color: 'rgba(255, 112, 112, 0.4)',
+            titleRotate: 90
+        },
+        rdf: {
+            on: false,
+            name: 'RDF',
+            title: 'RDF',
+            hierMin: 0,
+            hierMax: 1,
+            entMin: 0,
+            entMax: 1,
+            strucMin: 0.9,
+            strucMax: 1,
+            color: 'rgba(255, 255, 112, 0.4)',
+            titleRotate: 0
+        },
+        unstruc: {
+            on: false,
+            name: 'unstructured',
+            title: 'unstructured formats',
+            hierMin: 0.9,
+            hierMax: 1,
+            entMin: 0,
+            entMax: 1,
+            strucMin: 0,
+            strucMax: 0.1,
+            color: 'rgba(112, 255, 225, 0.4)',
+            titleRotate: 90
+        },
+    };
+}
 Vue.component('rotation-axis-x', {
     data: function () {
         return {
@@ -108,9 +177,9 @@ Vue.component('zoom', {
                 <div class="input-group-prepend">
                     <div class="input-group-text">Zoom</div>
                 </div>
-                <input type="number" min="0" max="3" step="any" name="zoom" data-zoom='.cont'
+                <input type="number" min="0" max="3" step="0.001" name="zoom" data-zoom='.cont'
                        class="form-control" v-model="value"/>
-                <input type="range" min="0" max="3" step="any" name="zoomText" data-zoom='.cont'
+                <input type="range" min="0" max="3" step="0.001" name="zoomText" data-zoom='.cont'
                        class="custom-range" v-model="value"/>
             </div>`,
     watch: {
@@ -134,7 +203,7 @@ Vue.component('intervals', {
             <div class="input-group col-sm-12 col-md-4 mb-3" id="intervals">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="checkbox" class="form-check-input" aria-label="Intervals" name="intervals" checked v-model="on">
+                        <input type="checkbox" class="d-none form-check-input" aria-label="Intervals" name="intervals" checked v-model="on">
                         Intervals
                     </div>
                 </div>
@@ -153,7 +222,7 @@ Vue.component('intervals', {
 });
 
 Vue.component('cube', {
-    props: ['axisX', 'axisY', 'axisZ', 'perspective', 'zoom', 'intervals', 'data', 'structures'],
+    props: ['axisX', 'axisY', 'axisZ', 'perspective', 'zoom', 'intervals', 'objects', 'structures'],
     template: `
         <section class="cont" v-bind:style="{ transform: 'scale(' + zoom + ')', perspective: perspective + 'px' }">
             <div id="cube" v-bind:style="{ transform: 'rotateX(' + axisX + 'deg) rotateY(' + axisY + 'deg) rotateZ(' + axisZ + 'deg)' }">
@@ -190,28 +259,80 @@ Vue.component('cube', {
                     <div class="background bottom-background"></div>
                 </figure>
                 <div class="cover bottom-cover"></div>
-                <cube-data v-bind:data="data" v-bind:structures="structures"></cube-data>
+                <cube-data v-bind:objects="objects" v-bind:structures="structures" v-bind:intervals="intervals"></cube-data>
             </div>
         </section>
     `
 });
 
 Vue.component('cube-data', {
-    props: ['structures', 'data'],
+    props: ['structures', 'objects', 'intervals'],
+    data: function () {
+        return {
+            intervalLargestSize: null
+        }
+    },
     template: `
-    <div id="cube-structures">
-        <div v-for="(structure, index) in structures">
-            <block v-if="structure.on" v-bind:id="'structure_' + index" v-bind:title="structure.title"
-            v-bind:x="200*structure.hierMin" v-bind:y="200*structure.entMin" v-bind:z="200*structure.strucMin"
-            v-bind:width="200*(structure.hierMax-structure.hierMin)" 
-            v-bind:height="200*(structure.entMax-structure.entMin)" 
-            v-bind:length="200*(structure.strucMax-structure.strucMin)"
-            v-bind:color="structure.color" v-bind:titleRotate="structure.titleRotate"
-            v-bind:label="structure.label"></block>
+    <div>
+        <div id="cube-data">
+            <div v-for="(structure, index) in structures">
+                <transition name="fade">
+                    <block v-if="structure.on" v-bind:id="'structure_' + index" v-bind:title="structure.title"
+                    v-bind:x="200*structure.hierMin" v-bind:y="200*structure.entMin" v-bind:z="200*structure.strucMin"
+                    v-bind:width="200*(structure.hierMax-structure.hierMin)" 
+                    v-bind:height="200*(structure.entMax-structure.entMin)" 
+                    v-bind:length="200*(structure.strucMax-structure.strucMin)"
+                    v-bind:color="structure.color" v-bind:titleRotate="structure.titleRotate"
+                    v-bind:label="structure.title"></block>
+                </transition>
+                </div>
+            </div>
+            <div v-if="intervals" id="cube-data-intervals">
+                <block v-for="(object, index) in intervalBlocks" v-bind:id="'area_' + index" 
+                v-bind:title="'h: ' + (object.hierStep/200).toFixed(3) + ', i: ' + (object.entStep/200).toFixed(3) + ', s: ' + (object.strucStep/200).toFixed(3) + ', size: ' + object.size"
+                v-bind:x="object.hierStep" v-bind:y="object.entStep" v-bind:z="object.strucStep"
+                v-bind:width="200 / intervals" v-bind:height="200 / intervals" v-bind:length="200 / intervals"
+                v-bind:color="'rgba(112, 112, 255, ' + object.size / intervalLargestSize + ')'"></block>
             </div>
         </div>
     </div>
-    `
+    `,
+    computed: {
+        intervalBlocks: function () {
+            if (!this.intervals || !this.objects) {
+                return null;
+            }
+            let intervalSize = 200 / this.intervals;
+            //console.log('intervalSize', intervalSize);
+            let intervalBricks = {};
+            let intervalLargestSize = 0;
+            this.objects.forEach(function (item) {
+                //console.log('item', item);
+                //console.log(item.hierarchicallity, intervalSize, ~~(item.hierarchicallity * 200 / intervalSize) * intervalSize);
+                hierStep = item.hierarchicallity < 1 ? (~~(item.hierarchicallity * 200 / intervalSize) * intervalSize) : 200 - intervalSize;
+                entStep = item.information_amount < 1 ? (~~(item.information_amount * 200 / intervalSize) * intervalSize) : 200 - intervalSize;
+                strucStep = item.structuredness < 1 ? (~~(item.structuredness * 200 / intervalSize) * intervalSize) : 200 - intervalSize;
+                blockID = `${hierStep}_${entStep}_${strucStep}`;
+                //console.log('blockID', blockID);
+                if (blockID in intervalBricks) {
+                    intervalBricks[blockID].size += item.size;
+                } else {
+                    intervalBricks[blockID] = {};
+                    intervalBricks[blockID].size = item.size;
+                    intervalBricks[blockID].hierStep = hierStep;
+                    intervalBricks[blockID].entStep = entStep;
+                    intervalBricks[blockID].strucStep = strucStep;
+                }
+                if (intervalLargestSize < intervalBricks[blockID].size) {
+                    intervalLargestSize = intervalBricks[blockID].size;
+                }
+            });
+            this.intervalLargestSize = intervalLargestSize;
+            //console.log('intervalBricks', intervalBricks);
+            //console.log('intervalLargestSize', intervalLargestSize);
+            return intervalBricks;
+        }
+    }
 });
 
 Vue.component('block', {
@@ -237,7 +358,7 @@ Vue.component('block', {
                                             height: height+'px',
                                             'background-color': color}">
                 <span class="title">
-                    <span v-bind:style="{transform: 'rotate(' + titleRotate + 'deg)'}">{{title}}</span>
+                    <span v-bind:style="{transform: 'rotate(' + titleRotate + 'deg)'}">{{label}}</span>
                 </span> 
             </div>
             <div class="back" v-bind:style="{transform: 'rotateX( 180deg ) translateZ( ' + ((length) / 2) + 'px )',
@@ -284,7 +405,7 @@ Vue.component('csvFile', {
                 reader.addEventListener("load", function () {
                     let fileCSV = reader.result;
                     var parsedData = parseCSV(fileCSV);
-                    console.log('parsedData.data', parsedData.data);
+                    //console.log('parsedData.data', parsedData.data);
                     this.$emit('change', parsedData.data);
                 }.bind(this), false);
                 var text = reader.readAsText(f);
@@ -331,73 +452,7 @@ var app = new Vue({
         zoom: null,
         intervals: null,
         fileData: null,
-        structures: {
-            rdbs: {
-                on: false,
-                name: 'RDBS',
-                title: 'relational database',
-                hierMin: 0,
-                hierMax: 1,
-                entMin: 0.9,
-                entMax: 1,
-                strucMin: 0.9,
-                strucMax: 1,
-                color: 'rgba(112, 112, 255, 0.4)',
-                titleRotate: 0
-            },
-            xml: {
-                on: false,
-                name: 'XML',
-                title: 'XML',
-                hierMin: 0.9,
-                hierMax: 1,
-                entMin: 0,
-                entMax: 1,
-                strucMin: 0,
-                strucMax: 1,
-                color: 'rgba(112, 255, 112, 0.4)',
-                titleRotate: 90
-            },
-            json: {
-                on: false,
-                name: 'JSON',
-                title: 'JSON',
-                hierMin: 0.9,
-                hierMax: 1,
-                entMin: 0,
-                entMax: 1,
-                strucMin: 0.9,
-                strucMax: 1,
-                color: 'rgba(255, 112, 112, 0.4)',
-                titleRotate: 90
-            },
-            rdf: {
-                on: false,
-                name: 'RDF',
-                title: 'RDF',
-                hierMin: 0,
-                hierMax: 1,
-                entMin: 0,
-                entMax: 1,
-                strucMin: 0.9,
-                strucMax: 1,
-                color: 'rgba(255, 255, 112, 0.4)',
-                titleRotate: 0
-            },
-            unstruc: {
-                on: false,
-                name: 'unstructured',
-                title: 'unstructured formats',
-                hierMin: 0.9,
-                hierMax: 1,
-                entMin: 0,
-                entMax: 1,
-                strucMin: 0,
-                strucMax: 0.1,
-                color: 'rgba(112, 255, 225, 0.4)',
-                titleRotate: 90
-            },
-        }
+        structures: {}
     },
     methods: {
         mo: function (evt) {
@@ -419,18 +474,29 @@ var app = new Vue({
         wheel: function (evt) {
             evt.preventDefault();
             this.zoom *= ((1000 - evt.deltaY) / 1000);
+        },
+        reset: function () {
+            this.structures = defaultStructuresData();
+            this.fileData = null;
         }
+    },
+    created: function () {
+        this.reset();
     }
 });
 
 var parseCSV = function (data) {
-    let csv = data ? Papa.parse(data, {
+    let text = data.replace(/0,/g, "0.");
+    //console.log(text);
+    let csv = data ? Papa.parse(text, {
         delimiter: ";",
         header: true,
-        dynamicTyping: true
+        dynamicTyping: true,
+        skipEmptyLines: true
     }) : null;
     if (!csv) {
         return;
     }
+    //console.log(csv);
     return csv;
 };
