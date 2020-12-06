@@ -1,9 +1,10 @@
+var lang = 'cz';
 var defaultStructuresData = () => {
     return {
         rdbs: {
             on: false,
             name: 'RDBS',
-            title: 'relational database',
+            title: lang == 'cz' ? 'relační databáze' : 'relational database',
             hierMin: 0,
             hierMax: 1,
             entMin: 0.9,
@@ -55,7 +56,7 @@ var defaultStructuresData = () => {
         unstruc: {
             on: false,
             name: 'unstructured',
-            title: 'unstructured formats',
+            title: lang == 'cz' ? 'nestrukturované formáty' : 'unstructured formats',
             hierMin: 0.9,
             hierMax: 1,
             entMin: 0,
@@ -66,7 +67,7 @@ var defaultStructuresData = () => {
             titleRotate: 90
         },
     };
-}
+};
 Vue.component('rotation-axis-x', {
     data: function () {
         return {
@@ -231,7 +232,11 @@ Vue.component('cube', {
                 </figure>
                 <figure class="back">
                     <div class="graph-background grid">
-                        <span class="axis-label">1&emsp;amount of information&emsp;0</span>
+                        <span class="axis-label">
+                            <span>1</span>
+                            <span>&emsp;<!--amount of information--> i &emsp;</span>
+                            <span>0</span>
+                        </span>
                     </div>
                     <!--<img src="img/3dgrafEntr.png" alt="entropy" draggable="false" class="graph-background"/>-->
                     <div class="background back-background"></div>
@@ -242,7 +247,11 @@ Vue.component('cube', {
                 </figure>
                 <figure class="left">
                     <div class="graph-background grid">
-                        <span class="axis-label">1&ensp;amount of structuredness&ensp;0</span>
+                        <span class="axis-label">
+                            <span>1</span>
+                            <span>&emsp;<!--amount of structuredness--> s &emsp;</span>
+                            <span>0</span>
+                        </span>
                     </div>
                     <!--<img src="img/3dgrafStruk.png" alt="entropy" draggable="false" class="graph-background"/>-->
                     <div class="background left-background"></div>
@@ -253,7 +262,11 @@ Vue.component('cube', {
                 </figure>
                 <figure class="bottom">
                     <div class="graph-background grid">
-                        <span class="axis-label">0&ensp;amount of hierarchicallity&ensp;1</span>
+                        <span class="axis-label">
+                            <span>1</span>
+                            <span>&emsp;<!--amount of hierarchicallity--> h &emsp;</span>
+                            <span>0</span>
+                        </span>
                     </div>
                     <!--<img src="img/3dgrafHie.png" alt="entropy" draggable="false" class="graph-background"/>-->
                     <div class="background bottom-background"></div>
