@@ -493,8 +493,16 @@ var app = new Vue({
             this.fileData = null;
         },
         loadDemo: function () {
-            fetch("https://raw.githubusercontent.com/danielvodnansky/3d-data-histogram/main/demo_data/demo.json")
-                .then(response => this.fileData = JSON.parse(response.json()));
+            let url = 'https://raw.githubusercontent.com/danielvodnansky/3d-data-histogram/main/demo_data/demo.json';
+
+            fetch(url)
+                .then(res => res.json())
+                .then((out) => {
+                    this.fileData = out;
+                })
+                .catch(err => {
+                    console.log(err)
+                });
         }
     },
     created: function () {
