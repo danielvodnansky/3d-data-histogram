@@ -210,11 +210,11 @@ figure:after {
 }
 
 #cube figure.bottom {
-    transform: rotateX(-90deg) translateZ(100.01px);
+    transform: rotateX(-90deg) translateZ(99.00px);
 }
 
 #cube .bottom-cover, .bottom-background {
-    transform: rotateX(-90deg) translateZ(100.01px);
+    transform: rotateX(-90deg) translateZ(101.00px);
 }
 
 div.block {
