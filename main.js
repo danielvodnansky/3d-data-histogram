@@ -1,4 +1,4 @@
-var lang = 'cz';
+var lang = 'en';
 var defaultStructuresData = () => {
     return {
         rdbs: {
@@ -76,7 +76,7 @@ Vue.component('rotation-axis-x', {
     },
     template: `<div class="input-group col-sm-12 col-md-4 mb-3" id="rotation-axis-x">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">X</div>
+                    <div class="input-group-text">rotate X</div>
                 </div>
                 <input type="number" min="-180" max="180" name="axisXtext" data-axis='x'
                        class="form-control" v-model="value"/>
@@ -101,7 +101,7 @@ Vue.component('rotation-axis-y', {
     },
     template: `<div class="input-group col-sm-12 col-md-4 mb-3" id="rotation-axis-y">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">Y</div>
+                    <div class="input-group-text">rotate Y</div>
                 </div>
                 <input type="number" min="-180" max="180" name="axisYtext" data-axis='y'
                        class="form-control" v-model="value"/>
@@ -126,7 +126,7 @@ Vue.component('rotation-axis-z', {
     },
     template: `<div class="input-group col-sm-12 col-md-4 mb-3" id="rotation-axis-z">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">Z</div>
+                    <div class="input-group-text">rotate Z</div>
                 </div>
                 <input type="number" min="-180" max="180" name="axisZtext" data-axis='z'
                        class="form-control" v-model="value"/>
@@ -201,7 +201,7 @@ Vue.component('intervals', {
         }
     },
     template: `
-            <div class="input-group col-sm-12 col-md-4 mb-3" id="intervals">
+            <div class="input-group col-sm-12 col-md-4 mb-3" id="intervals" title="Granularity of areas covered by data objects">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input type="checkbox" class="d-none form-check-input" aria-label="Intervals" name="intervals" checked v-model="on">
@@ -491,6 +491,10 @@ var app = new Vue({
         reset: function () {
             this.structures = defaultStructuresData();
             this.fileData = null;
+        },
+        loadDemo: function () {
+            fetch("https://raw.githubusercontent.com/danielvodnansky/3d-data-histogram/main/demo_data/demo.json")
+                .then(response => this.fileData = JSON.parse(response.json()));
         }
     },
     created: function () {
