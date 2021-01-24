@@ -1,4 +1,4 @@
-var lang = 'en';
+var lang = 'cz';
 var defaultStructuresData = () => {
     return {
         rdbs: {
@@ -263,9 +263,9 @@ Vue.component('cube', {
                 <figure class="bottom">
                     <div class="graph-background grid">
                         <span class="axis-label">
-                            <span>1</span>
-                            <span>&emsp;<!--amount of hierarchicallity--> h &emsp;</span>
                             <span>0</span>
+                            <span>&emsp;<!--amount of hierarchicallity--> h &emsp;</span>
+                            <span>1</span>
                         </span>
                     </div>
                     <!--<img src="img/3dgrafHie.png" alt="entropy" draggable="false" class="graph-background"/>-->
