@@ -79,7 +79,7 @@ Vue.component('rotation-axis-x', {
                     <div class="input-group-text">rotate X</div>
                 </div>
                 <input type="number" min="-180" max="180" name="axisXtext" data-axis='x'
-                       class="form-control" v-model="value"/>
+                       class="form-control" v-model.number="value"/>
                 <input type="range" min="-180" max="180" name="value" data-axis='x' value="-20" class="custom-range"
                        v-model="value"/>
             </div>`,
@@ -104,7 +104,7 @@ Vue.component('rotation-axis-y', {
                     <div class="input-group-text">rotate Y</div>
                 </div>
                 <input type="number" min="-180" max="180" name="axisYtext" data-axis='y'
-                       class="form-control" v-model="value"/>
+                       class="form-control" v-model.number="value"/>
                 <input type="range" min="-180" max="180" name="axisY" data-axis='y' class="custom-range"
                        v-model="value"/>
             </div>`,
@@ -129,7 +129,7 @@ Vue.component('rotation-axis-z', {
                     <div class="input-group-text">rotate Z</div>
                 </div>
                 <input type="number" min="-180" max="180" name="axisZtext" data-axis='z'
-                       class="form-control" v-model="value"/>
+                       class="form-control" v-model.number="value"/>
                 <input type="range" min="-180" max="180" name="value" data-axis='z' class="custom-range" v-model="value"/>
             </div>`,
     watch: {
