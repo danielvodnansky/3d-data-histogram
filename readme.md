@@ -17,3 +17,7 @@ _object_id;size;information_amount;hierarchicallity;structuredness_. object_id i
 (probably bytes or textual length) and the thee metrics are floats in the interval <0; 1>. The data is shown in the table below the visualization.
 
 You can rotate the space on all three axis or by dragging the visualization, set the perspective and the zoom.
+
+By clicking on any **data structure type** (RDBS, XML, JSON, RDF or unstructured formats), you display the area covered by ideal data
+of this structure type (eg. structured and normalized for relational database). This helps to visualize the compatibility of the daa and its 
+structure type.

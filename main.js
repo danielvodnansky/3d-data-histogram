@@ -1,4 +1,4 @@
-var lang = 'cz';
+var lang = 'en';
 var defaultStructuresData = () => {
     return {
         rdbs: {
@@ -81,7 +81,7 @@ Vue.component('rotation-axis-x', {
                 <input type="number" min="-180" max="180" name="axisXtext" data-axis='x'
                        class="form-control" v-model.number="value"/>
                 <input type="range" min="-180" max="180" name="value" data-axis='x' value="-20" class="custom-range"
-                       v-model="value"/>
+                       v-model.number="value"/>
             </div>`,
     watch: {
         value: function (newValue) {
@@ -94,6 +94,7 @@ Vue.component('rotation-axis-x', {
 });
 
 Vue.component('rotation-axis-y', {
+    //props: ['axisY'],
     data: function () {
         return {
             value: null
@@ -106,7 +107,7 @@ Vue.component('rotation-axis-y', {
                 <input type="number" min="-180" max="180" name="axisYtext" data-axis='y'
                        class="form-control" v-model.number="value"/>
                 <input type="range" min="-180" max="180" name="axisY" data-axis='y' class="custom-range"
-                       v-model="value"/>
+                       v-model.number="value"/>
             </div>`,
     watch: {
         value: function (newValue) {
@@ -115,7 +116,13 @@ Vue.component('rotation-axis-y', {
     },
     created: function () {
         this.value = -40
-    }
+    },
+    /*watch: {
+        axisY: value => {
+            //console.log('axisY', axisY);
+            this.value = value;
+        }
+    }*/
 });
 
 Vue.component('rotation-axis-z', {
@@ -130,7 +137,7 @@ Vue.component('rotation-axis-z', {
                 </div>
                 <input type="number" min="-180" max="180" name="axisZtext" data-axis='z'
                        class="form-control" v-model.number="value"/>
-                <input type="range" min="-180" max="180" name="value" data-axis='z' class="custom-range" v-model="value"/>
+                <input type="range" min="-180" max="180" name="value" data-axis='z' class="custom-range" v-model.number="value"/>
             </div>`,
     watch: {
         value: function (newValue) {
