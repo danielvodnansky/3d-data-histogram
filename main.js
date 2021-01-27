@@ -308,7 +308,7 @@ Vue.component('cube-data', {
                 </div>
             </div>
             <div v-if="intervals" id="cube-data-intervals">
-                <block v-for="(object, index) in intervalBlocks" v-bind:id="'area_' + index" 
+                <block v-for="(object, index) in intervalBlocks" v-bind:id="'area_' + index" :key="index"
                 v-bind:title="'h: ' + (object.hierStep/200).toFixed(3) + ', i: ' + (object.entStep/200).toFixed(3) + ', s: ' + (object.strucStep/200).toFixed(3) + ', size: ' + object.size"
                 v-bind:x="object.hierStep" v-bind:y="object.entStep" v-bind:z="object.strucStep"
                 v-bind:width="200 / intervals" v-bind:height="200 / intervals" v-bind:length="200 / intervals"

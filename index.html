@@ -23,6 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <script src="papaparse.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 
     <!--<script src="https://raw.githubusercontent.com/mholt/PapaParse/master/papaparse.min.js"></script>-->
 </head>
@@ -45,10 +46,23 @@
         </h1>
         <p class="lead">object_id;size;information_amount;hierarchicallity;structuredness</p>
         <hr class="my-4">
-        <p>and watch visualization <a class="btn btn-primary btn-lg float-right"
-                                      href="https://github.com/danielvodnansky/3d-data-histogram"
-                                      role="button" target="_blank">Learn more</a>
+        <p>and watch visualization
+            <button class="btn btn-primary btn-lg float-right ml-1" type="button" data-toggle="collapse"
+                    data-target="#learnMore" aria-expanded="false" aria-controls="learnMore">
+                Learn more
+            </button>
+            <a class="btn btn-secondary btn-lg float-right ml-1"
+               href="https://github.com/danielvodnansky/3d-data-histogram"
+               role="button" target="_blank">
+                GitHub
+            </a>
         </p>
+        <div class="collapse w-100 mt-2" id="learnMore">
+            <div class="card card-body w-100">
+                <zero-md v-pre
+                         src="https://raw.githubusercontent.com/danielvodnansky/3d-data-histogram/main/readme.md"></zero-md>
+            </div>
+        </div>
     </div>
     <form id="fileUpload" class="form-inline">
         <div class="form-row">
