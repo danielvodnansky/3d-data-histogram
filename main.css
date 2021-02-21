@@ -25,26 +25,32 @@ body {
 
 .drawArea {
     width: 100%;
-    min-height: 500px;
+    max-height: 1100px;
+    height: 100vw;
     -webkit-box-shadow: 7px 7px 20px 0px rgba(50, 50, 50, 0.35);
     -moz-box-shadow: 7px 7px 20px 0px rgba(50, 50, 50, 0.35);
     box-shadow: 7px 7px 20px 0px rgba(50, 50, 50, 0.35);
     position: relative;
     perspective: 500px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 section.cont {
     margin: auto;
+    /* margin-top: 50%; */
     /* left: 40%; */
     /* right: 50%; */
-    top: 10em;
+    /* top: 10em; */
     position: relative;
     width: 200px;
     height: 200px;
     position: relative;
-    /*perspective: 1000px;*/
+    /* perspective: 1000px; */
     transition: all .2s linear;
+    /* align-items: center; */
+    display: inline-block;
 }
 
 #cube {
