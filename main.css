@@ -35,6 +35,8 @@ body {
     overflow: hidden;
     display: flex;
     align-items: center;
+    resize: both;
+    overflow: hidden;
 }
 
 section.cont {
