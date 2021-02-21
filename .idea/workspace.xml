@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7663382b-33cf-44ef-b521-8bec058b343f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
@@ -22,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="110" column="23" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
+            <state relative-caret-position="357">
+              <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -45,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="319" column="15" lean-forward="true" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
+            <state relative-caret-position="5423">
+              <caret line="319" column="15" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -56,7 +57,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="323">
-                <caret line="19" column="74" lean-forward="true" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
+                <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
               </first_editor>
               <second_editor />
             </state>
@@ -75,7 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>title=</find>
       <find>defaultStructuresData</find>
       <find>created</find>
       <find>checkb</find>
@@ -105,6 +105,7 @@
       <find>block</find>
       <find>bootstr</find>
       <find>axis</find>
+      <find>histogr</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;button</replace>
@@ -123,6 +124,7 @@
     </replaceStrings>
     <dirStrings>
       <dir>D:\Documents\development\3dHistogramVue\dist</dir>
+      <dir>D:\Documents\development\3dHistogramVue</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -134,11 +136,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/dist/js/app.e97997c7.js" />
         <option value="$PROJECT_DIR$/main.css" />
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -252,7 +254,9 @@
       <workItem from="1607278701697" duration="2727000" />
       <workItem from="1611167321888" duration="7411000" />
       <workItem from="1611510067074" duration="2065000" />
-      <workItem from="1611768590619" duration="6465000" />
+      <workItem from="1611768590619" duration="7147000" />
+      <workItem from="1612090849854" duration="9000" />
+      <workItem from="1613893133936" duration="132000" />
     </task>
     <task id="LOCAL-00001" summary="file upload">
       <created>1556991774054</created>
@@ -352,11 +356,18 @@
       <option name="project" value="LOCAL" />
       <updated>1611774755768</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="footer added">
+      <created>1611856555897</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1611856555897</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98500000" />
+    <option name="totallyTimeSpent" value="99323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -372,11 +383,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14427663" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14666137" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.3296355" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.3296355" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="5" />
@@ -430,7 +441,8 @@
     <MESSAGE value="papaparse fix" />
     <MESSAGE value="readme update" />
     <MESSAGE value="learn more button added" />
-    <option name="LAST_COMMIT_MESSAGE" value="learn more button added" />
+    <MESSAGE value="footer added" />
+    <option name="LAST_COMMIT_MESSAGE" value="footer added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package-lock.json">
@@ -451,16 +463,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="211" column="21" selection-start-line="211" selection-start-column="21" selection-end-line="211" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/papaparse.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
@@ -468,10 +470,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/papaparse.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3587">
+          <caret line="211" column="21" selection-start-line="211" selection-start-column="21" selection-end-line="211" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="319" column="15" lean-forward="true" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
+        <state relative-caret-position="5423">
+          <caret line="319" column="15" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -479,16 +498,9 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="323">
-            <caret line="19" column="74" lean-forward="true" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
+            <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="110" column="23" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
         </state>
       </provider>
     </entry>
